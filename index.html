@@ -1,3 +1,5 @@
+import streamlit as st
+
 from sklearn import preprocessing
 import streamlit as st
 import pandas as pd
@@ -48,3 +50,41 @@ if submitted:
         grid = sns.FacetGrid(cluster_df1, col='Cluster')
         grid = grid.map(plt.hist, c)
         st.pyplot(fig)  # Pass the figure directly to st.pyplot
+
+# Embed HTML and JavaScript code
+html_code = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Streamlit Prediction App</title>
+    <style>
+        body {background-color: Blue;}
+    </style>
+</head>
+<body>
+
+<h1>Prediction</h1>
+
+<form method="post" enctype="multipart/form-data" id="my_form">
+    <label for="balance">Balance:</label>
+    <input type="number" step="0.001" name="balance" id="balance" value="" required>
+    <!-- Add similar input fields for other features -->
+
+    <input type="submit" value="Submit">
+</form>
+
+<!-- Add JavaScript code if needed -->
+<script>
+    function submitForm() {
+        var balanceValue = document.getElementById("balance").value;
+        // Add similar lines for other input fields
+        console.log("Form submitted with Balance:", balanceValue);
+        // Add additional logic as needed
+    }
+</script>
+</body>
+</html>
+"""
+
+# Display the HTML code in Streamlit
+st.markdown(html_code, unsafe_allow_html=True)
